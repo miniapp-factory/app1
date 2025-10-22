@@ -1,5 +1,7 @@
 import { description, title, url } from "@/lib/metadata";
 import { Metadata } from "next";
+import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 export const dynamic = "force-dynamic";
 
@@ -33,9 +35,25 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default function Home() {
   return (
-    <main className="flex flex-col gap-3 place-items-center px-4">
-      <span className="text-2xl">{title}</span>
-      <span className="text-muted-foreground">{description}</span>
+    <main className="flex flex-col items-center justify-center min-h-screen px-4 py-12 space-y-8">
+      <section className="text-center">
+        <h1 className="text-4xl font-bold mb-4">{title}</h1>
+        <p className="text-muted-foreground mb-8">{description}</p>
+        <Button asChild>
+          <a href={url} target="_blank" rel="noopener noreferrer">
+            Launch Mini App
+          </a>
+        </Button>
+      </section>
+      <section className="max-w-3xl w-full">
+        <Image
+          src="/icon.png"
+          alt="Mini App icon"
+          width={200}
+          height={200}
+          className="mx-auto rounded-full"
+        />
+      </section>
     </main>
   );
 }
